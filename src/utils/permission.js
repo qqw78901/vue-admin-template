@@ -1,14 +1,21 @@
 import router from '../routers/index';
 import Vue from 'vue';
-var permissionIds = [1, 2, 3, 4, 6, 7, 8];
+import iView from 'iview';
 
+var permissionIds = [1, 2, 3, 4, 6, 7, 8];
+iView.LoadingBar.config({
+    color: '#ff9900',
+    failedColor: '#ed4014',
+    height: 4
+});
 var permission = {
     bindChangePage() {
         // 路由跳转之前
         router.beforeEach((to, from, next) => {
+            iView.LoadingBar.start();
             // 面包屑
             var routeList = [];
-            f2eGame.port.udb.isLogin().then(res => {
+            Common.isLogin(res => {
                 if (res) { // 判断是否已经登录
                     if (this.hasPermission(to.meta.id) && to.meta.id !== undefined) {
                         var index = routeList.indexOf(to.name)
@@ -36,6 +43,9 @@ var permission = {
                     Common.login()
                 }
             });
+        });
+        router.afterEach((to,from)=>{
+            iView.LoadingBar.finish();
         })
     },
     // 更新菜单权限

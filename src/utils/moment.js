@@ -1,6 +1,6 @@
 import moment from 'moment';
 import Vue from 'vue';
-moment.locale('zh-cn');
+// moment.locale('zh-cn');
 Vue.prototype.$moment = moment;
 Vue.moment = moment;
 const smartGetMoment = (time) => {

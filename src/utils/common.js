@@ -1,3 +1,6 @@
+
+import http from './http';
+import api from '../API';
 var Common = {
     islogin: false,
     userInfo: null,
@@ -57,7 +60,16 @@ var Common = {
 
             return result
         }
-    }
+    },
+    getCookie(name){
+      var arrStr = document.cookie.split("; ");
+      for (var i = 0; i < arrStr.length; i++) {
+        var temp = arrStr[i].split("=");
+        if (temp[0] == name)
+          return temp[1];
+      }
+      return null;
+    },
 
     // Function.prototype.bind=function(context){
     //     var args=Array.prototype.slice(arguments,1);
