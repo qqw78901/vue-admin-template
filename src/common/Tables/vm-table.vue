@@ -1,72 +1,69 @@
 <template>
   <Row class="vm-table vm-panel">
-    <div class="panel-heading">
+    <div class="panel-heading" v-if="title!=null">
       {{ title }}
     </div>
     <div class="panel-body">
       <!-- 暂时不需要设置选项 -->
-<!--      <Row type="flex" justify="space-between" class="control">
-        <div class="table-style">
-          <h3>Stripe</h3>
-          <i-switch v-model="showStripe" style="margin: 0 30px 0 10px"></i-switch>
-          <h3>Size</h3>
-          <Radio-group v-model="tableSize" type="button" style="margin-left: 10px">
-            <Radio label="large">Large</Radio>
-            <Radio label="default">Default</Radio>
-            <Radio label="small">Small</Radio>
-          </Radio-group>
-        </div>
-        <div class="search-bar">
-          <Input placeholder="Please enter ..." v-model="keyword" style="width: 300px"></Input>
-          <Button type="ghost" @click="search"><i class="fa fa-search"></i></Button>
-        </div>
-      </Row>-->
+      <!--      <Row type="flex" justify="space-between" class="control">
+              <div class="table-style">
+                <h3>Stripe</h3>
+                <i-switch v-model="showStripe" style="margin: 0 30px 0 10px"></i-switch>
+                <h3>Size</h3>
+                <Radio-group v-model="tableSize" type="button" style="margin-left: 10px">
+                  <Radio label="large">Large</Radio>
+                  <Radio label="default">Default</Radio>
+                  <Radio label="small">Small</Radio>
+                </Radio-group>
+              </div>
+              <div class="search-bar">
+                <Input placeholder="Please enter ..." v-model="keyword" style="width: 300px"></Input>
+                <Button type="ghost" @click="search"><i class="fa fa-search"></i></Button>
+              </div>
+            </Row>-->
       <div class="edit" v-if="type === 'edit'">
-          <Button @click="modalAdd = true" ><i class="fa fa-plus"></i> Add</Button>
-          <Button  :disabled="deleteDisabled" @click="modalDelete = true"><i class="fa fa-trash"></i> Delete</Button>
+        <Button @click="modalAdd = true"><i class="fa fa-plus"></i> Add</Button>
+        <Button :disabled="deleteDisabled" @click="modalDelete = true"><i class="fa fa-trash"></i> Delete</Button>
       </div>
-      <Table :stripe="showStripe" :size="tableSize" :columns="showColumns" :data="dataShow" @on-selection-change="selectChange"></Table>
-      <Row type="flex" justify="space-between" class="footer">
-        <div class="info-bar">
-          Show<Input-number class="input-number" v-model="showNum" :max="data.length" :min="1" @on-change=" updateDataShow ">{{ showNum }}</Input-number>/ Page
-        </div>
-        <div class="page">
-          <span class="total">Total {{ data.length }}</span>
-          <Page :total="data.length" :current="currentPage" :page-size="showNum" @on-change="pageChange"></Page>
-        </div>
-      </Row>
+      <Table :stripe="showStripe" :size="tableSize" :columns="showColumns" :data="dataShow" :loading="loading"
+             @on-selection-change="selectChange"></Table>
+
+      <div slot="footer" style="padding-left:5px">
+        <Page :total="data.length" :current="currentPage" :page-size="showNum" @on-change="pageChange"
+              @on-page-size-change="pageSizer" show-sizer show-total></Page>
+      </div>
     </div>
     <Modal
-        v-model="modalEdit"
-        title="Edit"
-        ok-text="OK"
-        cancel-text="Cancel"
-        v-on:on-ok="editOk">
-        <Form :label-width="50">
-          <Form-item v-for="(value, key) in dataEdit" :label="convertKey(key)" :key="dataEdit.id">
-            <Input v-model="dataEdit[key]" :placeholder="'Please enter' + key"></Input>
-          </Form-item>
-        </Form>
+      v-model="modalEdit"
+      title="Edit"
+      ok-text="OK"
+      cancel-text="Cancel"
+      v-on:on-ok="editOk">
+      <Form :label-width="50">
+        <Form-item v-for="(value, key) in dataEdit" :label="convertKey(key)" :key="dataEdit.id">
+          <Input v-model="dataEdit[key]" :placeholder="'Please enter' + key"></Input>
+        </Form-item>
+      </Form>
     </Modal>
     <Modal
-        v-model="modalAdd"
-        title="Add"
-        ok-text="OK"
-        cancel-text="Cancel"
-        v-on:on-ok="addOk">
-        <Form :label-width="50">
-          <Form-item v-for="item in columns" :label="item.title" :key="item.id">
-            <Input v-model="dataAdd[item.key]" :placeholder="'Please enter' + item.title"></Input>
-          </Form-item>
-        </Form>
+      v-model="modalAdd"
+      title="Add"
+      ok-text="OK"
+      cancel-text="Cancel"
+      v-on:on-ok="addOk">
+      <Form :label-width="50">
+        <Form-item v-for="item in columns" :label="item.title" :key="item.id">
+          <Input v-model="dataAdd[item.key]" :placeholder="'Please enter' + item.title"></Input>
+        </Form-item>
+      </Form>
     </Modal>
     <Modal
-        v-model="modalDelete"
-        title="Delete"
-        ok-text="OK"
-        cancel-text="Cancel"
-        v-on:on-ok="deleteOk">
-        Are you sure to delete this data?
+      v-model="modalDelete"
+      title="Delete"
+      ok-text="OK"
+      cancel-text="Cancel"
+      v-on:on-ok="deleteOk">
+      Are you sure to delete this data?
     </Modal>
   </Row>
 </template>
@@ -77,13 +74,17 @@
     props: {
       title: {
         type: String,
-        default: 'Basic Table'
+        default: null
       },
       type: String,
       columns: Array,
-      data: Array
+      data: Array,
+      loading: {
+        type: Boolean,
+        default: false
+      }
     },
-    data () {
+    data() {
       return {
         deleteDisabled: true,
         dataShow: [],
@@ -113,6 +114,10 @@
       },
       pageChange: function (page) {
         this.currentPage = page
+        this.updateDataShow()
+      },
+      pageSizer: function (size) {
+        this.showNum = size;
         this.updateDataShow()
       },
       updateDataShow: function () {

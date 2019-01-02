@@ -63,7 +63,7 @@ export default {
       this.chart.setOption({
         tooltip: {
           trigger: 'item',
-          formatter: '{a} <br/>{b} : {c} ({d}%)'
+          formatter: '{b} : {c} ({d}%)'
         },
         legend: {
           left: 'center',
@@ -73,10 +73,10 @@ export default {
         calculable: true,
         series: [
           {
-            name: '玩家登录方式占比',
+            name: '',
             type: 'pie',
-            radius: ['40%', '80%'],
-            center: ['50%', '38%'],
+            radius: ['40%', '75%'],
+            center: ['50%', '40%'],
             data:data,
             // data: [
             //   { value: 320, name: 'Industries' },

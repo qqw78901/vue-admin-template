@@ -1,9 +1,9 @@
 <template>
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            {{title}}
+    <div class="box">
+        <div class="box-header with-border" v-if="title">
+          {{title}}
         </div>
-        <div class="box-body">
+        <div class="box-body padding-2">
             <div class="row">
                 <div class="col-sm-12">
                     <Form :label-width="80" inline v-model="query">
@@ -12,23 +12,29 @@
                             <DatePicker :type="item.format" v-model="query[item.key]" v-if="item.type==='date'"></DatePicker>
                             <template v-else-if="item.type==='select'">
                                 <Select v-model="query[item.key]" filterable>
-                                    <Option v-for="options in item.selectList" :value="options.value" :key="options.value">{{ options.text }}</Option>
+                                    <Option v-for="options in item.selectList" :value="options.value" :key="options.value" :label="options.text"></Option>
                                 </Select>
                             </template>
                             <Input type="text" v-model="query[item.key]" v-else></Input>
                         </FormItem>
+                      <figure class="pull-right" v-if="btn">
+                        <Button type="primary" @click="search" class="mr-2">查询</Button>
+
+                        <Button type="info" @click="resetSearch" >清除</Button>
+
+                      </figure>
                     </Form>
                 </div>
             </div>
         </div>
-        <div class="box-footer">
-            <figure class="pull-right" v-if="btn">
-                <Button type="primary" @click="search" class="mr-2">搜索</Button>
+        <!--<div class="box-footer">-->
+            <!--<figure class="pull-right" v-if="btn">-->
+                <!--<Button type="primary" @click="search" class="mr-2">搜索</Button>-->
 
-                <Button type="info" @click="resetSearch" >清除</Button>
+                <!--<Button type="info" @click="resetSearch" >清除</Button>-->
 
-            </figure>
-        </div>
+            <!--</figure>-->
+        <!--</div>-->
     </div>
 </template>
 
@@ -115,5 +121,9 @@ export default {
 <style scoped>
 .mr-2{
     margin-right: 20px;
+}
+/*todo*/
+.box {
+  border-top-color: #ffffff;
 }
 </style>

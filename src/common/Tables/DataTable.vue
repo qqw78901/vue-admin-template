@@ -182,7 +182,7 @@ export default {
             const operation = {
                 title: '操作',
                 key: 'action',
-                width: 250,
+                width: 150,
                 align: 'center',
                 render: (h, params) => {
                     const btns = [];

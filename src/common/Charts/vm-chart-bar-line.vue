@@ -92,17 +92,36 @@
       }
     },
     methods: {
+      showLoading: function () {
+        if (this.chart) {
+          this.chart.showLoading({
+            text: '',
+            color: '#3090c2',
+            textColor: '#000',
+            maskColor: 'rgba(255, 255, 255, 0.8)',
+            zlevel: 0
+          })
+        }
+      },
+      hideLoading: function () {
+        if (this.chart) {
+          this.chart.hideLoading()
+        }
+      },
       renderChart: function () {
         if (this.chart) {
           this.chart.dispose()
         }
+        let showTitle = this.title != null ? true : false;
+
+
         // 初始化echart
         this.chart = echarts.init(document.getElementById(this.id))
         // 自定义eChart样式 官方配置指南(http://echarts.baidu.com/option.html#yAxis.splitLine.lineStyle.color)
         this.chart.setOption({
           title: {
             text: this.title,
-            show: false,
+            show: showTitle,
             padding: 0
           },
           legend: {
@@ -111,8 +130,9 @@
             bottom: 0
           },
           grid: {
-            left: 30,
-            right: 15
+            x: 70,
+            y: 15,
+            x2: 50
           },
           color: this.color,
           tooltip: {},
