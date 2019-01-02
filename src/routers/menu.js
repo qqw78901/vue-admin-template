@@ -3,54 +3,55 @@
  需要执行到这个function的时候才回去require某个组件
  如果不需要按需加载，直接 import Layout from '../views/layout/layout.vue'
  */
-const Layout =()=>import('../views/layout/layout.vue')
-const Dashboard =()=>import('../views/dashboard/')
-const UserFunction =()=>import('../views/userfunction/userfunction.vue')
-const EventDuration =()=>import('../views/duration/duration.vue')
-const UserFunctionDetail =()=>import('../views/userfunctionDetail/userfunctionDetail.vue')
-const FunnelList =()=>import('../views/funnelSetting/funnelList.vue')
-const EventChangeDetail =()=>import('../views/eventChangeDetail/eventChangeDetail.vue')
-const EventGroupList =()=>import('../views/eventGroupSetting/eventGroupList.vue')
-const EventGroupDetail =()=>import('../views/eventGroupDetail/eventGroupDetail.vue')
-const SelfReprotList =()=>import('../views/selfReportSetting/selfReportList.vue')
-const SelfReprotDetail =()=>import('../views/selfReportDetail/selfReportDetail.vue')
+const Layout =()=>import(/* webpackChunkName: "layout"*/'../views/layout/layout.vue')
+const Dashboard =()=>import(/* webpackChunkName: "dashboard"*/'../views/dashboard/')
+const UserFunction =()=>import(/* webpackChunkName: "userfunction"*/'../views/userfunction/userfunction.vue')
+const EventDuration =()=>import(/* webpackChunkName: "duration"*/'../views/duration/duration.vue')
+const UserFunctionDetail =()=>import(/* webpackChunkName: "userfunctiondetail"*/'../views/userfunctionDetail/userfunctionDetail.vue')
+const FunnelList =()=>import(/* webpackChunkName: "funnellist"*/'../views/funnelSetting/funnelList.vue')
+const EventChangeDetail =()=>import(/* webpackChunkName: "eventchangedetail"*/'../views/eventChangeDetail/eventChangeDetail.vue')
+const EventGroupList =()=>import(/* webpackChunkName: "eventgrouplist"*/'../views/eventGroupSetting/eventGroupList.vue')
+const EventGroupDetail =()=>import(/* webpackChunkName: "eventgroupdetail"*/'../views/eventGroupDetail/eventGroupDetail.vue')
+const SelfReprotList =()=>import(/* webpackChunkName: "selfreportlist"*/'../views/selfReportSetting/selfReportList.vue')
+const SelfReprotDetail =()=>import(/* webpackChunkName: "selfreportdetail"*/'../views/selfReportDetail/selfReportDetail.vue')
 
 /**
  * 菜单——应用趋势菜单
  */
-const ActiveUser =()=>import('../views/appTrend/ActiveUser.vue')
-const NewUser =()=>import('../views/appTrend/NewUser.vue')
-const RetainUser =()=>import('../views/appTrend/RetainUser.vue')
-const StartUpTimes =()=>import('../views/appTrend/StartUpTimes')
-const TopIver =()=>import('../views/appTrend/TopIver')
-const TopIverDetail =()=>import('../views/appTrend/TopIverDetail')
-const OnlineUser =()=>import("../views/appTrend/OnlineUser")
+const ActiveUser =()=>import(/* webpackChunkName: "activeuser"*/'../views/appTrend/ActiveUser.vue')
+const NewUser =()=>import(/* webpackChunkName: "newuser"*/'../views/appTrend/NewUser.vue')
+const RetainUser =()=>import(/* webpackChunkName: "retainuser"*/'../views/appTrend/RetainUser.vue')
+const StartUpTimes =()=>import(/* webpackChunkName: "startuptimed"*/'../views/appTrend/StartUpTimes')
+const TopIver =()=>import(/* webpackChunkName: "topiver"*/'../views/appTrend/TopIver')
+const TopIverDetail =()=>import(/* webpackChunkName: "topiverdetail"*/'../views/appTrend/TopIverDetail')
+const OnlineUser =()=>import(/* webpackChunkName: "onlineuser"*/"../views/appTrend/OnlineUser")
 
-const ChannelSource =()=>import('../views/channelSource/channelSource.vue')
-const InstallChannel =()=>import('../views/channelSource/installChannel.vue')
-const InstallChannelDetail =()=>import('../views/channelSource/installChannelDetail.vue')
-const TopOuterRef =()=>import('../views/channelSource/topOuterRef.vue')
-const TopOuterRefDetail =()=>import('../views/channelSource/TopOuterRefDetail.vue')
-const Function =()=>import('../views/userfunction/function.vue')
-const Participation =()=>import('../views/participation/Participation.vue')
-const OnlineDuration =()=>import('../views/participation/OnlineDuration.vue')
-const UseFrequency =()=>import('../views/participation/UseFrequency.vue')
-const UseGap =()=>import('../views/participation/UseGap.vue')
+const ChannelSource =()=>import(/* webpackChunkName: "channelsource"*/'../views/channelSource/channelSource.vue')
+const InstallChannel =()=>import(/* webpackChunkName: "installchannel"*/'../views/channelSource/installChannel.vue')
+const InstallChannelDetail =()=>import(/* webpackChunkName: "installchanneldetail"*/'../views/channelSource/installChannelDetail.vue')
+const TopOuterRef =()=>import(/* webpackChunkName: "topouterref"*/'../views/channelSource/topOuterRef.vue')
+const TopOuterRefDetail =()=>import(/* webpackChunkName: "topouterrefdetail"*/'../views/channelSource/TopOuterRefDetail.vue')
+const Participation =()=>import(/* webpackChunkName: "participation"*/'../views/participation/Participation.vue')
+const OnlineDuration =()=>import(/* webpackChunkName: "onlineduration"*/'../views/participation/OnlineDuration.vue')
+const UseFrequency =()=>import(/* webpackChunkName: "usefrequency"*/'../views/participation/UseFrequency.vue')
+const UseGap =()=>import(/* webpackChunkName: "usegap"*/'../views/participation/UseGap.vue')
 
 /**
  * 终端属性
  */
-const Equipment =()=>import('../views/terminal/Equipment.vue')
-const Isp =()=>import('../views/terminal/ISP')
-const Area =()=>import('../views/terminal/Area')
+const Equipment =()=>import(/* webpackChunkName: "equipment"*/'../views/terminal/Equipment.vue')
+const Isp =()=>import(/* webpackChunkName: "isp"*/'../views/terminal/ISP')
+const Area =()=>import(/* webpackChunkName: "area"*/'../views/terminal/Area')
 
+const ErrorPage =()=>import(/* webpackChunkName: "error"*/'../views/error/error.vue')
+const ErrorDetail =()=>import(/* webpackChunkName: "errordetail"*/'../views/error/errorDetail.vue')
+const ErrorDistribution =()=>import(/* webpackChunkName: "errordistribution"*/'../views/error/errorDistribution.vue')
 /**
  * 菜单——设置
  */
-const DimTraceKpi =()=>import('../views/setting/dimTraceKpi.vue')
+const DimTraceKpi =()=>import(/* webpackChunkName: "dimtracekpi"*/'../views/setting/dimTraceKpi.vue')
 
-const Index =()=>import('../views/index/index.vue')
-
+const Index =()=>import(/* webpackChunkName: "index"*/'../views/index/index.vue')
 var menus = [
   {
     path: '/index',
@@ -221,10 +222,10 @@ var menus = [
     ]
   },
   {
-    path: '/fn',
+    path: '/function',
     name: '功能使用',
     hidden: false,
-    component: Function,
+    component: Layout,
     meta: {
       id: 8,
       icon: 'fa-windows'
@@ -293,6 +294,71 @@ var menus = [
           id: 8,
         }
       },
+      {
+        path: 'error',
+        name: '错误分析',
+        component: ErrorPage,
+        hidden: false,
+        meta: {
+          id: 8,
+        }
+      },
+      {
+        path: 'errorDetail',
+        name: '错误分析详情',
+        component: ErrorDetail,
+        hidden: true,
+        meta: {
+          id: 8,
+        }
+      },
+      {
+        path: 'errorDistribution',
+        name: '错误分布',
+        component: ErrorDistribution,
+        hidden: true,
+        meta: {
+          id: 8,
+        }
+      }
+    ]
+  },
+
+
+  {
+    path: '/terminal',
+    name: '终端属性',
+    component:Layout,
+    hidden: false,
+    meta: {
+      id: 8,
+      icon: 'fa-laptop'
+    },
+    children: [
+      {
+        path: 'equipment',
+        name: '设备终端',
+        component: Equipment,
+        meta: {
+          id: 8,
+        }
+      },
+      {
+        path: 'isp',
+        name: '网络及运营商',
+        component: Isp,
+        meta: {
+          id: 8,
+        }
+      },
+      {
+        path: 'area',
+        name: '地域',
+        component: Area,
+        meta: {
+          id: 8,
+        }
+      }
     ]
   },
   {
@@ -315,47 +381,6 @@ var menus = [
       icon: 'fa-dashboard'
     }
   },
-
-  {
-    path: '/terminal',
-    name: '终端属性',
-    component:Layout,
-    hidden: false,
-    meta: {
-      id: 8,
-      icon: 'glyphicon glyphicon-phone'
-    },
-    children: [
-      {
-        path: 'equipment',
-        name: '设备终端',
-        component: Equipment,
-        meta: {
-          id: 8,
-          icon: 'fa-hand-o-right'
-        }
-      },
-      {
-        path: 'isp',
-        name: '网络及运营商',
-        component: Isp,
-        meta: {
-          id: 8,
-          icon: 'fa-hand-o-right'
-        }
-      },
-      {
-        path: 'area',
-        name: '地域',
-        component: Area,
-        meta: {
-          id: 8,
-          icon: 'fa-hand-o-right'
-        }
-      }
-    ]
-  },
-
   {
     path: '/setting',
     name: '设置',
@@ -378,162 +403,4 @@ var menus = [
   },
 
 ];
-// const menus =()=>import('../routers/menu';)
-/*var menus = [
-  {
-    path: '/theme',
-    name: '换肤',
-    component: Theme,
-    hidden: false,
-    meta: {
-      id: 7,
-      icon: 'fa-adjust'
-    }
-  },
-  {
-    path: '/',
-    name: '组件',
-    hidden: false,
-    children: [{
-      path: '/',
-      name: '富文本编辑器',
-      hidden: false,
-      meta: {
-        id: 7
-      }
-    }, {
-      path: '/',
-      name: '上传文件',
-      hidden: false,
-      meta: {
-        id: 7
-      }
-    }, {
-      path: '/',
-      name: '换肤',
-      hidden: false,
-      meta: {
-        id: 7,
-        icon: 'fa-barcode'
-      }
-    }, {
-      path: '/',
-      name: '复制',
-      hidden: false,
-      meta: {
-        id: 7,
-        icon: 'fa-barcode'
-      }
-    }],
-    meta: {
-      id: 7,
-      icon: 'fa-th'
-    }
-  },
-  {
-    path: '/multipleForm',
-    name: '表单页',
-    component: MultipleForm,
-    hidden: false,
-    meta: {
-      id: 8,
-      icon: 'fa-edit'
-    }
-
-  }, {
-    path: '/detail',
-    name: '详情页',
-    component: Detail,
-    hidden: false,
-    meta: {
-      id: 7,
-      icon: 'fa-pie-chart'
-    }
-  }, {
-    path: '/UIElements',
-    name: 'UI元素',
-    component: Layout,
-    hidden: false,
-    meta: {
-      id: 8,
-      icon: 'fa-laptop'
-    },
-    children: [{
-      path: 'icons',
-      name: 'ICONS',
-      component: Icons,
-      meta: {
-        id: 8,
-      }
-    }, {
-      path: 'buttons',
-      name: '按钮',
-      component: Buttons,
-      meta: {
-        id: 8,
-      }
-    }]
-  }, {
-    path: '/tables',
-    name: '表格',
-    component: Layout,
-    hidden: false,
-    meta: {
-      id: 8,
-      icon: 'fa-table'
-    },
-    children: [{
-        path: 'baseTable',
-        name: '通用表格',
-        component: BaseTable,
-        meta: {
-          id: 8,
-        }
-      }, {
-        path: 'normalTable',
-        name: '简单表格',
-        component: NormalTable,
-        meta: {
-          id: 8,
-        }
-      }, {
-        path: 'dynamicTable',
-        name: '动态表格',
-        component: DynamicTable,
-        meta: {
-          id: 8,
-        }
-      }, {
-        path: 'inlineEditTable',
-        name: '行内编辑表格',
-        component: InlineEditTable,
-        meta: {
-          id: 8,
-        }
-      }, {
-        path: 'dragableTable',
-        name: '可拖拽表格',
-        component: DragableTable,
-        meta: {
-          id: 4
-        }
-      },
-      {
-        path: 'filterTable',
-        name: '可筛选表格',
-        component: FilterTable,
-        meta: {
-          id: 4
-        }
-      }, {
-        path: '/',
-        name: '表格导出数据',
-        // component: DragableTable,
-        meta: {
-          id: 4
-        }
-      }
-    ]
-  }
-];*/
 export default menus;

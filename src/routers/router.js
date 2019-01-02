@@ -1,5 +1,6 @@
+import error401 from '../views/errorpage/401.vue';
 import error403 from '../views/errorpage/403.vue';
-import error404 from '../views/errorpage/404.vue'
+import error404 from '../views/errorpage/404.vue';
 import menus from '../routers/menu';
 import DetailTable from '../components/tables/DetailTable';
 
@@ -21,6 +22,13 @@ const Routers = [{
         meta: {
             id: 1,
         }
+    },
+    {
+      path: '/401',
+      component: error401,
+      meta: {
+        id: 2
+      }
     },
     {
         path: '/403',
