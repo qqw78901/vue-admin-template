@@ -10,14 +10,15 @@ import permission from './utils/permission'; //permission是项目的权限管�
 import http from './utils/http'; //网络请求方法
 import "./API"; //API是接口配置
 import './utils/moment'; //时间处理方法
+import TipTitle from './components/TipTitle.vue'; //页面提示组件
 permission.bindChangePage(); //执行路由跳转的权限函数
 window.Common = Common; //把Common挂载到window下面
 Common.init(); //初始化Common
 
-
 //注入VueRouter和iView
 Vue.use(VueRouter);
 Vue.use(iView);
+Vue.component('TipTitle', TipTitle);
 Vue.prototype.$http = http;
 Vue.http = http;
 export function render() {

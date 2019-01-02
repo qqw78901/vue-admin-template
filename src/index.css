@@ -26,3 +26,9 @@ html {
     border: 5px;
     padding: 5px;
   }
+
+.div_left {
+  float: left;
+  border: 5px;
+  padding: 5px;
+}

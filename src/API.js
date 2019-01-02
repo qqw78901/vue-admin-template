@@ -70,9 +70,22 @@ const API = {
   //产品汇总
   listProductBase: `${host}/index/listProductBase`,
   listOuterRefByDays: `${host}/overview/listOuterRefByDays`,
+  listProductBase:`${host}/index/listProductBase`,
+  listOuterRefByDays:`${host}/overview/listOuterRefByDays`,
+  listError:`${host}/error/listError`,
+  listErrorDetail:`${host}/error/listErrorDetail`,
+  listErrorDistribution:`${host}/error/listErrorDistribution`,
+  updateErrorId:`${host}/error/updateErrorId`,
 
   //终端设备
-  listTerminal: `${host}/terminal/listTerminal`
+  listTerminal: `${host}/terminal/listTerminal`,
+  listIsp: `${host}/terminal/listIsp`,
+  //地域
+  listArea: `${host}/area/listArea`,
+  //指标说明
+  listKpiDesc: `${host}/kpi/showKpiDesc`,
+  //是否登录
+  isLogin:`${host}/login/checkLogin`
 
 };
 Vue.prototype.$api = API;

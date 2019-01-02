@@ -20,6 +20,7 @@
     import permission from './utils/permission';
     import menuRouter from './routers/menu';
     import directive from './utils/directive'
+    import kpiCodes from './utils/kpiCodes'
     //export 导出了app组件
     export default {
         data() {
@@ -53,6 +54,7 @@
             permission.getPermissionMenuList().then(data=>{
                 this.productList = this.productList.concat(data);
             });
+            kpiCodes.init();
         },
         //这个状态下数据更新并且DOM重新渲染，
         //当这个生命周期函数被调用时，组件 DOM 已经更新，
