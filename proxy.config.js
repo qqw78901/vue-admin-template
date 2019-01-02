@@ -7,7 +7,7 @@
  */
 module.exports = {
   '/api': {
-    target: 'http://localhost:8080/',
+    target: 'http://pasv2.yy.com',
     changeOrigin: true,
     onProxyRes: function (proxyRes) {
       var resCookie = proxyRes.headers['set-cookie'];
