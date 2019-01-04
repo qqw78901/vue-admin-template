@@ -1,5 +1,5 @@
 // vue.config.js
-var path = require('path')
+var config = require('./config');
 var proxyConfig = require('./proxy.config');
 module.exports = {
   configureWebpack: config => {
@@ -25,7 +25,7 @@ module.exports = {
   // to our Spring Boot backend (localhost:8088) using http-proxy-middleware
   // see https://cli.vuejs.org/config/#devserver-proxy
   devServer: {
-    port: 9090,
+    port: config.port,
     disableHostCheck: true,
     proxy: proxyConfig
   },
@@ -34,11 +34,11 @@ module.exports = {
    * 默认情况下，Vue CLI 会假设你的应用是被部署在一个域名的根路径上，例如 https://www.my-app.com/
    * 如果应用被部署在一个子路径上，你就需要用这个选项指定这个子路径。例如，如果你的应用被部署在 https://www.my-app.com/my-app/，则设置 baseUrl 为 /my-app/。
    */
-  baseUrl: '/',
+  baseUrl: config.baseUrl,
   //放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
   // assetsDir:'./',
   // 打包输出的路径，注意目标目录在构建之前会被清除 (构建时传入 --no-clean 可关闭该行为)。
-  outputDir: path.join(__dirname, '../webapp'),
+  outputDir: config.outputDir,
   // assetsDir: 'static',
   // vue-cli3设置iview自定义主题
   css: { // 配置css模块

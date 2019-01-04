@@ -12,8 +12,9 @@
     "dev": "cross-env NODE_ENV=development && webpack-dev-server --open --hot "
   },
   "dependencies": {
-    "iview": "^3.0.1",
+    "iview": "^3.2.0",
     "vue": "^2.5.17",
+    "moment": "^2.22.2",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
@@ -22,9 +23,7 @@
     "echarts": "^4.1.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
-    "moment": "^2.22.2",
     "rimraf": "^2.6.2",
-    "sortablejs": "^1.7.0",
     "vue-cli-plugin-iview": "^1.0.6",
     "vue-template-compiler": "^2.5.17"
   }

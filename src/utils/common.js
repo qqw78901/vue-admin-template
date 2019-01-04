@@ -38,17 +38,17 @@ var Common = {
             if (last < wait && last > 0) {
                 timeout = setTimeout(later, wait - last)
             } else {
-                timeout = null
+                timeout = null;
                     // 如果设定为immediate===true，因为开始边界已经调用过了此处无需调用
                 if (!immediate) {
-                    result = func.apply(context, args)
+                    result = func.apply(context, args);
                     if (!timeout) context = args = null
                 }
             }
-        }
+        };
 
         return function(...args) {
-            context = this
+            context = this;
             timestamp = +new Date()
             const callNow = immediate && !timeout
                 // 如果延时不存在，重新设定延时
@@ -70,15 +70,5 @@ var Common = {
       }
       return null;
     },
-
-    // Function.prototype.bind=function(context){
-    //     var args=Array.prototype.slice(arguments,1);
-    //     var _this = this;
-    //     return function(){
-    //         var args2 = Array.prototype.slice(arguments,0);
-    //         _this.apply(context?context:window,args.concat(args2));
-    //     }
-
-    // }
-}
+};
 export default Common;

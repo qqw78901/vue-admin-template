@@ -1,4 +1,4 @@
-
+var config = require('./config');
 /**
  *
  * 代理转发，如：
@@ -7,7 +7,7 @@
  */
 module.exports = {
   '/api': {
-    target: 'http://pasv2.yy.com',
+    target: config.proxyPath,
     changeOrigin: true,
     onProxyRes: function (proxyRes) {
       var resCookie = proxyRes.headers['set-cookie'];

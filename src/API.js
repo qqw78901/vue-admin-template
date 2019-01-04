@@ -70,8 +70,6 @@ const API = {
   //产品汇总
   listProductBase: `${host}/index/listProductBase`,
   listOuterRefByDays: `${host}/overview/listOuterRefByDays`,
-  listProductBase:`${host}/index/listProductBase`,
-  listOuterRefByDays:`${host}/overview/listOuterRefByDays`,
   listError:`${host}/error/listError`,
   listErrorDetail:`${host}/error/listErrorDetail`,
   listErrorDistribution:`${host}/error/listErrorDistribution`,
