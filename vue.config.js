@@ -3,7 +3,6 @@ var config = require('./config');
 var proxyConfig = require('./proxy.config');
 module.exports = {
   configureWebpack: config => {
-    config.plugins.push(new(require('webpack')).IgnorePlugin(/^\.\/locale$/, /moment$/))
     if (process.env.NODE_ENV === 'production') {
       Object.assign(config.optimization.minimizer[0].options.terserOptions, {
         compress: {

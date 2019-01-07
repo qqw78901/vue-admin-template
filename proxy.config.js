@@ -7,8 +7,39 @@ var config = require('./config');
  */
 module.exports = {
   '/api': {
-    target: config.proxyPath,
+    target: config.proxyDomain,
     changeOrigin: true,
+    pathRewrite: {
+      // 如果是接口服务器是根目录 则直接重写到根目录"/"
+      '^/api': config.proxyPath,
+      // 如果接口服务器不是在根目录 则重写到目录"/xxx"
+      // '^/api': '/xxx'
+    },
+    onProxyRes: function (proxyRes) {
+      var resCookie = proxyRes.headers['set-cookie'];
+      if (resCookie != null && resCookie.length > 0) {
+        var resultArr = resCookie[0].split(";");
+        var resultStr = '';
+        for (var i in resultArr) {
+          if (resultArr[i].toLowerCase().indexOf('path=') >= 0) {
+            resultStr += 'Path=/;';
+          } else {
+            resultStr += resultArr[i] + ';'
+          }
+        }
+        proxyRes.headers['set-cookie'][0] = resultStr;
+      }
+    }
+  },
+  '/permission': {
+    target: "http://gview.yy.com/gview/sample/gview-v18.0.0/scripts/gviews/gview.privilege-test.json",
+    changeOrigin: true,
+    pathRewrite: {
+      // 如果是接口服务器是根目录 则直接重写到根目录"/"
+      '^/permission': "",
+      // 如果接口服务器不是在根目录 则重写到目录"/xxx"
+      // '^/api': '/xxx'
+    },
     onProxyRes: function (proxyRes) {
       var resCookie = proxyRes.headers['set-cookie'];
       if (resCookie != null && resCookie.length > 0) {
@@ -24,11 +55,5 @@ module.exports = {
         proxyRes.headers['set-cookie'][0] = resultStr;
       }
     },
-    pathRewrite: {
-      // 如果是接口服务器是根目录 则直接重写到根目录"/"
-      '^/api': '/'
-      // 如果接口服务器不是在根目录 则重写到目录"/xxx"
-      // '^/api': '/xxx'
-    }
-  }
+  },
 }

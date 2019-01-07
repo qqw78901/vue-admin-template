@@ -7,7 +7,10 @@ module.exports = {
    * -----------开发时相关配置-----------
    * 下面配置仅在开发（run-dev）过程生效
    */
-  proxyPath: "http://pasv2.yy.com",
+  proxyDomain: "http://pasv2.yy.com",
+  // 如果是接口服务器是根目录 则填根目录"/"
+  // 如果接口服务器不是在根目录 则填目录"/xxx"
+  proxyPath:"/",
   /*前端服务器端口，不要跟java服务器重复*/
   port: 9090,
   /**
@@ -23,7 +26,4 @@ module.exports = {
   outputDir: path.join(__dirname, '../webapp'),
   /* 需要清除的文件夹 */
   dirNeedToClean:['js', 'img', 'fonts', 'lib', 'css']
-  /* 需要清除的文件夹 */
-
-
 };

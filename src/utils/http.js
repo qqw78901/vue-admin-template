@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import router from '../routers/index';
 
 const http=(url,data,type)=>{
@@ -10,7 +11,7 @@ const http=(url,data,type)=>{
             timeout:30*1000,
             success(response){
                 if(response.status===-999){
-                    window.location.reload();
+                    // window.location.reload();
                 }
                 if(response.status===-888){
                   router.push('/401')
@@ -27,5 +28,6 @@ const http=(url,data,type)=>{
         })
     })
 };
-
+Vue.prototype.$http = http;
+Vue.http = http;
 export default http;

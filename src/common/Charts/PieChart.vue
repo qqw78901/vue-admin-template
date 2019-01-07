@@ -6,6 +6,7 @@
 
 <script>
 import echarts from 'echarts'
+import {debounce} from "../../utils/tools";
 require('echarts/theme/macarons') // echarts theme
 /**
  * 环形图
@@ -43,7 +44,7 @@ export default {
   },
   mounted() {
     this.initChart()
-    this.__resizeHanlder = Common.debounce(() => {
+    this.__resizeHanlder = debounce(() => {
       if (this.chart) {
         this.chart.resize()
       }

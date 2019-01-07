@@ -9,6 +9,7 @@
  * 金字塔型图表
  */
   import echarts from 'echarts';
+import {debounce} from "../../utils/tools";
   require('echarts/theme/macarons') // echarts theme
   export default {
     props: {
@@ -39,7 +40,7 @@
     mounted() {
       this.initChart()
       if (this.autoResize) {
-        this.__resizeHanlder = Common.debounce(() => {
+        this.__resizeHanlder = debounce(() => {
           if (this.chart) {
             this.chart.resize()
           }

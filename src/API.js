@@ -5,6 +5,7 @@ const isDevMod = process.env.NODE_ENV === "development";
  * 根据当前运行环境决定使用哪个Host，开发环境 host是/api ,  正式环境是xx 某一层的相对路径
  */
 const host = isDevMod ? '/api' : "..";
+const permissionHost = isDevMod ? '/permission' : "..";
 const API = {
   getUserByPage: `${host}/user/list.do`,
   addUser: `${host}/user/add.do`,
@@ -83,9 +84,10 @@ const API = {
   //指标说明
   listKpiDesc: `${host}/kpi/showKpiDesc`,
   //是否登录
-  isLogin:`${host}/login/checkLogin`
+  isLogin:`${host}/login/checkLogin`,
+  getPermission:`${permissionHost}`
 
 };
 Vue.prototype.$api = API;
-Vue.API = API;
+Vue.api = API;
 export default API;
