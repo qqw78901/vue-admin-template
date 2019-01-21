@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="box box-primary" v-if="searchBar">
+        <div class="box" v-if="searchBar">
             <div class="box-body">
                 <div class="row">
                     <div class="col-sm-12">
@@ -17,11 +17,11 @@
             <div class="box-footer">
                 <figure class="pull-right">
                     <Button type="info" @click="resetSearch">清除</Button>
-                    <Button type="primary" @click="search">搜索</Button>
+                    <Button type="primary" @click="search">查询</Button>
                 </figure>
             </div>
         </div>
-        <div class="box box-primary">
+        <div class="no-border padding-20" :class="{box:inBox}">
             <!-- /.box-header -->
             <div class="box-body">
                 <label v-if="addBtn">
@@ -48,7 +48,7 @@
                 <Form ref="formInline" :model="editedData" inline :label-width="120">
                     <div class="row">
                         <div v-for="(item,key) in column" :key="item.key">
-                            <FormItem :label="item.title" class="col-sm-10" :prop="item.key" v-if="item.editable">
+                            <FormItem :key="key" :label="item.title" class="col-sm-10" :prop="item.key" v-if="item.editable">
                                 <Input v-model="editedData[item.key]"></Input>
                             </FormItem>
                         </div>
@@ -79,6 +79,11 @@ export default {
         addUrl: String,
         editUrl: String,
         title: String,
+        inBox:{
+            type:Boolean,
+            require:false,
+            default:true
+        },
         removeUrl: String,
         // 分页页码参数
         pageNumberParamer: String,
@@ -185,7 +190,7 @@ export default {
                 width: 150,
                 align: 'center',
                 render: (h, params) => {
-                    const btns = [];
+                    let btns = [];
                     this.editBtn && btns.push(h('Button', {
                         props: {
                             type: 'primary',
@@ -221,7 +226,9 @@ export default {
                             }
                         }
                     }, '删除'));
-                    btns.push(this.$scopedSlots.btns(params))
+                    if(this.$scopedSlots&&this.$scopedSlots.btns){
+                        btns=btns.concat(this.$scopedSlots.btns(params).children)
+                    }
                     return h('div', btns);
                 }
             };
