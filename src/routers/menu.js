@@ -10,6 +10,7 @@ const Dashboard = () => import( /* webpackChunkName: "dashboard"*/ '../views/Das
  */
 const Buttons = () => import( /* webpackChunkName: "dashboard"*/ '../demos/Buttons/Buttons.vue');
 const Icons = () => import( /* webpackChunkName: "icons"*/ '../demos/Icons/Icons.vue');
+const PageTable = () => import('../demos/Table/PageTable.vue');
 
 const menus = [{
     path: '/index',
@@ -58,6 +59,29 @@ const menus = [{
       //菜单icon
       icon: 'fa-fonticons'
     }
+  },
+  {
+    path: '/tables',
+    name: 'tables',
+    component: Layout,
+    hidden: false,
+    meta: {
+      privilegeId: 1,
+      title: "表格",
+      //菜单icon
+      icon: 'fa-table'
+    },
+    children:[
+      {
+        path:"pageTable",
+        name:"pageTable",
+        component:PageTable,
+        meta:{
+          privilegeId:1,
+          title:"分页表格"
+        }
+      }
+    ]
   },
   {
     path: '/menus',

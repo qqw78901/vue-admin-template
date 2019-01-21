@@ -7,7 +7,7 @@ module.exports = {
    * -----------开发时相关配置-----------
    * 下面配置仅在开发（run-dev）过程生效
    */
-  proxyDomain: "http://pasv2.yy.com",
+  proxyDomain: "http://gviewportal.game.yy.com",
   // 如果是接口服务器是根目录 则填根目录"/"
   // 如果接口服务器不是在根目录 则填目录"/xxx"
   proxyPath:"/",
