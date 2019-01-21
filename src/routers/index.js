@@ -10,7 +10,8 @@ const RouterConfig = {
 const router = new VueRouter(RouterConfig);
 
 const turnTo = (to, next) => {
-  if (permission.showThisMenuEle(to)) {
+  permission.checkPermission(to).then(hadPermission => {
+    if (hadPermission) {
     next() // 有权限，可访问
   } else {
     next({
@@ -18,7 +19,8 @@ const turnTo = (to, next) => {
       name: '401'
     }) // 无权限，重定向到401页面
   }
-};
+  })
+}
 
 const LOGIN_PAGE_NAME = 'login';
 router.beforeEach((to, from, next) => {

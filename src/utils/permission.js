@@ -1,5 +1,6 @@
 import Vue from 'vue';
 const permission = {
+  loaded: false,
   // 拥有的权限列表
   permissionList: [8],
   /**
@@ -12,6 +13,22 @@ const permission = {
       const {data} =resp;
       const {privileges}=data;
       this.permissionList=privileges.map(item=>item.privilegeId);
+      this.loaded = true;
+    }).then(resp => {
+      console.log(this.permissionList)
+    })
+  },
+  checkPermission(routeItem) {
+    return new Promise(resolve => {
+      if (this.loaded) {
+      // 权限菜单已经加载了 直接返回运算结果
+      resolve(this.showThisMenuEle(routeItem));
+      } else {
+      // 权限菜单未加载，加载后返回运算结果
+      this.getPermissionList().then(() => {
+          resolve(this.showThisMenuEle(routeItem));
+        })
+      }
     })
   },
   /**
