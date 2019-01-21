@@ -37,7 +37,7 @@ const menus = [{
     hidden: false,
     meta: {
       privilegeId: 8,
-      title: "用户管理",
+      title: "菜单1",
       //菜单icon
       icon: 'fa-user'
     }
@@ -49,46 +49,48 @@ const menus = [{
     hidden: false,
     meta: {
       privilegeId: 1,
-      title: "组织管理",
+      title: "菜单2",
       //菜单icon
       icon: 'fa-tree'
     }
   },
   {
-    path: '/form',
-    name: 'form',
-    component: Dashboard,
+    path: '/menus',
+    name: 'menus',
+    component: Layout,
     hidden: false,
     meta: {
       privilegeId: 1,
-      title: "资料管理",
+      title: "二级菜单",
       //菜单icon
       icon: 'fa-book'
-    }
-  },
-  {
-    path: '/activity',
-    name: 'activity',
-    component: Dashboard,
-    hidden: false,
-    meta: {
-      privilegeId: 1,
-      title: "活动管理",
-      //菜单icon
-      icon: 'fa-caret-right'
-    }
-  },
-  {
-    path: '/usercenter',
-    name: 'usercenter',
-    component: Dashboard,
-    hidden: false,
-    meta: {
-      privilegeId: 1,
-      title: "个人中心",
-      //菜单icon
-      icon: 'fa-user'
-    }
+    },
+    children:[
+      {
+        path: 'sub1',
+        name: 'sub1',
+        component: Dashboard,
+        hidden: false,
+        meta: {
+          privilegeId: 1,
+          title: "二级菜单1",
+          //菜单icon
+          icon: 'fa-book'
+        },
+      },
+      {
+        path: 'sub2',
+        name: 'sub2',
+        component: Dashboard,
+        hidden: false,
+        meta: {
+          privilegeId: 1,
+          title: "二级菜单1",
+          //菜单icon
+          icon: 'fa-book'
+        },
+      }
+    ]
   },
 ];
 export default menus;
