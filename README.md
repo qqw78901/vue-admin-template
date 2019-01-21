@@ -10,79 +10,7 @@
 ## 文件目录
 
 ```text
-├── babel.config.js
-├── clean.js
-├── ES6常用新语法.md
-├── package.json
-├── postcss.config.js
-├── proxy.config.js
-├── public
-|  ├── fonts
-|  |  ├── fontawesome-webfont.eot
-|  |  ├── fontawesome-webfont.svg
-|  |  ├── fontawesome-webfont.ttf
-|  |  ├── fontawesome-webfont.woff
-|  |  ├── fontawesome-webfont.woff2
-|  |  └── FontAwesome.otf
-|  ├── index.html
-|  └── lib
-|     ├── adminlte.js
-|     ├── AdminLTE.min.css
-|     ├── adminlte.min.js
-|     ├── bootstrap.css
-|     ├── bootstrap.min.js
-|     ├── fastclick.js
-|     ├── font-awesome.min.css
-|     ├── ionicons.min.css
-|     ├── jquery-ui.min.js
-|     ├── jquery.min.js
-|     ├── jquery.slimscroll.min.js
-|     └── _all-skins.min.css
-├── README.md
-├── src
-|  ├── API.js
-|  ├── App.vue
-|  ├── assets
-|  |  └── logo.png
-|  ├── BS.js
-|  ├── common
-|  |  ├── Cards
-|  |  |  └── DataPanel.vue
-|  |  ├── Charts
-|  |  |  ├── FunnelChart.vue
-|  |  |  ├── PieChart.vue
-|  |  |  └── vm-chart-bar-line.vue
-|  |  ├── Forms
-|  |  ├── SearchBar
-|  |  |  └── SearchBar.vue
-|  |  └── Tables
-|  |     ├── DataTable.vue
-|  |     ├── SimpleTable
-|  |     ├── SimpleTable.vue
-|  |     └── vm-table.vue
-|  ├── components
-|  ├── components.less
-|  ├── index.css
-|  ├── index.html
-|  ├── main.js
-|  ├── routers
-|  |  ├── index.js
-|  |  ├── menu.js
-|  |  └── router.js
-|  ├── theme
-|  |  ├── index.less
-|  |  └── variable.less
-|  ├── utils
-|  |  ├── bus.js
-|  |  ├── common.js
-|  |  ├── directive.js
-|  |  ├── fetch.js
-|  |  ├── http.js
-|  |  ├── moment.js
-|  |  └── permission.js
-|  └── views
-├── vue.config.js
-└── 组件使用说明.md
+
 ```
 
 ## Maven配置
@@ -162,6 +90,10 @@
 
 
 ## 只跑该前端项目
+
+
+### demo的host
+221.228.81.29 gviewportal.game.yy.com
 
 ### 安装依赖
 ```javascript
