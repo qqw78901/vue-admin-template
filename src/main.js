@@ -13,6 +13,7 @@ import './utils/permission'; //permission是项目的权限管理
 import './utils/http'; //网络请求方法
 import './utils/moment'; //时间处理方法
 import './API'; //API是接口配置
+import './common/index.js';
 
 import Common from './utils/common'; //Common是项目公共功能方法
 
