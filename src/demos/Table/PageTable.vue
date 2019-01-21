@@ -32,25 +32,27 @@
         label="表格二"
         name="name2"
       >
-       <data-table
-          title="用户管理"
-          :queryUrl="$api.getUserByPage"
-          :addUrl="$api.addDept"
-          :editUrl="$api.updateDept"
-          :removeUrl="$api.removeDept"
-          pageNumberParamer="pageNo"
-          pageSizeParamer="pageSize"
-          totalCountsKey='data.count'
-          rowsKey="data.entitys"
-          :tableHeaders="table1.tableHeaders"
-          :addBtn="true"
-          :editBtn="true"
-          :removeBtn="true"
-          removeKey="id"
-          :searchBar="false"
-          :editOption="table1.editOption"
-          :inBox="false"
-        ></data-table>
+        <Row style="background:#eee;padding:20px">
+          <data-table
+            title="用户管理"
+            :queryUrl="$api.getUserByPage"
+            :addUrl="$api.addDept"
+            :editUrl="$api.updateDept"
+            :removeUrl="$api.removeDept"
+            pageNumberParamer="pageNo"
+            pageSizeParamer="pageSize"
+            totalCountsKey='data.count'
+            rowsKey="data.entitys"
+            :tableHeaders="table1.tableHeaders"
+            :addBtn="true"
+            :editBtn="true"
+            :removeBtn="true"
+            removeKey="id"
+            :searchBar="true"
+            :editOption="table1.editOption"
+            :inBox="true"
+          ></data-table>
+        </Row>
 
       </TabPane>
     </Tabs>
@@ -64,7 +66,7 @@ export default {
     return {
       table1: {
         //编辑、增加的前后端交互配置
-        editOption:{
+        editOption: {
           //get或者post
           type: 'post',
           //传参的类型，提供两种类型，string是 entity:json字符串;object是整个object传参
@@ -86,13 +88,13 @@ export default {
           //该字段是否可添加和编辑
           editable: true,
           //该字段是否可搜索
-          searchable: false
+          searchable: true
         },
-         {
+        {
           title: "创建时间",
           key: "posttime",
           //format 格式化方式
-          format:"datetime",
+          format: "datetime",
           sortable: true,
           //该字段是否可添加和编辑
           editable: false,
@@ -107,7 +109,7 @@ export default {
 </script>
 
 <style scoped>
-.ivu-tabs{
+.ivu-tabs {
   overflow: unset;
 }
 </style>
