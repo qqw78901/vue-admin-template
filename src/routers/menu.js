@@ -3,8 +3,13 @@
  需要执行到这个function的时候才回去require某个组件
  如果不需要按需加载，直接 import Layout from '../views/layout/layout.vue'
  */
-const Layout = () => import( /* webpackChunkName: "layout"*/ '../views/Layout/layout.vue')
-const Dashboard = () => import( /* webpackChunkName: "dashboard"*/ '../views/Dashboard/')
+const Layout = () => import( /* webpackChunkName: "layout"*/ '../views/Layout/layout.vue');
+const Dashboard = () => import( /* webpackChunkName: "dashboard"*/ '../views/Dashboard/index.vue');
+/**
+ * DEMO菜单
+ */
+const Buttons = () => import( /* webpackChunkName: "dashboard"*/ '../demos/Buttons/Buttons.vue');
+const Icons = () => import( /* webpackChunkName: "icons"*/ '../demos/Icons/Icons.vue');
 
 const menus = [{
     path: '/index',
@@ -31,27 +36,27 @@ const menus = [{
     }
   },
   {
-    path: '/user',
-    name: 'user',
-    component: Dashboard,
-    hidden: false,
-    meta: {
-      privilegeId: 8,
-      title: "菜单1",
-      //菜单icon
-      icon: 'fa-user'
-    }
-  },
-  {
-    path: '/dept',
-    name: 'dept',
-    component: Dashboard,
+    path: '/buttons',
+    name: 'buttons',
+    component: Buttons,
     hidden: false,
     meta: {
       privilegeId: 1,
-      title: "菜单2",
+      title: "按钮",
+      //菜单icon 如果要使用iview的ionicon 加上ivu-icon ivu-icon-图标名
+      icon: 'ivu-icon ivu-icon-ios-navigate-outline'
+    }
+  },
+  {
+    path: '/icons',
+    name: 'icons',
+    component: Icons,
+    hidden: false,
+    meta: {
+      privilegeId: 1,
+      title: "图标",
       //菜单icon
-      icon: 'fa-tree'
+      icon: 'fa-fonticons'
     }
   },
   {
@@ -63,10 +68,9 @@ const menus = [{
       privilegeId: 1,
       title: "二级菜单",
       //菜单icon
-      icon: 'fa-book'
+      icon: 'fa-list'
     },
-    children:[
-      {
+    children: [{
         path: 'sub1',
         name: 'sub1',
         component: Dashboard,
@@ -87,7 +91,7 @@ const menus = [{
           privilegeId: 1,
           title: "二级菜单1",
           //菜单icon
-          icon: 'fa-book'
+          icon: 'ivu-icon ivu-icon-ios-analytics'
         },
       }
     ]
