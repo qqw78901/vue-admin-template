@@ -1,27 +1,40 @@
 <template>
     <div>
-        <div class="box" v-if="searchBar">
-            <div class="box-body">
+        <Card v-if="searchBar" style="margin-bottom:20px;">
+            <Row style="margin-top:10px;">
+                <Form :label-width="80" inline v-model="query">
+                    <FormItem :key="index" :prop="item.key" :label="item.title" v-for="(item,index) in tableHeaders" v-if="item.searchable">
+                        <!--<template></template>-->
+                        <Input type="text" v-model="query[item.key]" v-if="typeof item.format!=='string'"></Input>
+                        <DatePicker :type="item.format" v-model="query[item.key]" v-else></DatePicker>
+                    </FormItem>
+                </Form>
+            </Row>
+            <Row>
+                 <figure class="pull-right">
+                    <Button type="primary" @click="search">查询</Button>
+                    &nbsp;
+                    <Button type="info" @click="resetSearch">清除</Button>
+                </figure>
+            </Row>
+
+        </Card>
+       <!-- <div class="box no-border" v-if="searchBar">
+            <div class="box-body ">
                 <div class="row">
                     <div class="col-sm-12">
-                        <Form :label-width="80" inline v-model="query">
-                            <FormItem :key="index" :prop="item.key" :label="item.title" v-for="(item,index) in tableHeaders" v-if="item.searchable">
-                                <!--<template></template>-->
-                                <Input type="text" v-model="query[item.key]" v-if="typeof item.format!=='string'"></Input>
-                                <DatePicker :type="item.format" v-model="formItem.date" v-else></DatePicker>
-                            </FormItem>
-                        </Form>
                     </div>
                 </div>
             </div>
             <div class="box-footer">
                 <figure class="pull-right">
-                    <Button type="info" @click="resetSearch">清除</Button>
                     <Button type="primary" @click="search">查询</Button>
+                    &nbsp;
+                    <Button type="info" @click="resetSearch">清除</Button>
                 </figure>
             </div>
-        </div>
-        <div class="no-border padding-20" :class="{box:inBox}">
+        </div> -->
+        <div class="no-border" :class="{box:inBox}">
             <!-- /.box-header -->
             <div class="box-body">
                 <label v-if="addBtn">
