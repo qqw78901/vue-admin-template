@@ -1,47 +1,33 @@
 <template>
     <div>
-        <Card v-if="searchBar" style="margin-bottom:20px;">
-            <Row style="margin-top:10px;">
-                <Form :label-width="80" inline v-model="query">
-                    <FormItem :key="index" :prop="item.key" :label="item.title" v-for="(item,index) in tableHeaders" v-if="item.searchable">
-                        <!--<template></template>-->
-                        <Input type="text" v-model="query[item.key]" v-if="typeof item.format!=='string'"></Input>
-                        <DatePicker :type="item.format" v-model="query[item.key]" v-else></DatePicker>
-                    </FormItem>
-                </Form>
-            </Row>
-            <Row>
-                 <figure class="pull-right">
-                    <Button type="primary" @click="search">查询</Button>
-                    &nbsp;
-                    <Button type="info" @click="resetSearch">清除</Button>
-                </figure>
-            </Row>
-
-        </Card>
-       <!-- <div class="box no-border" v-if="searchBar">
+        <div class="padding-20 " v-if="searchBar"  :class="{box:inBox}">
             <div class="box-body ">
                 <div class="row">
                     <div class="col-sm-12">
+                        <Form :label-width="80" inline v-model="query">
+                            <FormItem :key="index" :prop="item.key" :label="item.title" v-for="(item,index) in tableHeaders" v-if="item.searchable">
+                                <!--<template></template>-->
+                                <Input type="text" v-model="query[item.key]" v-if="typeof item.format!=='string'"></Input>
+                                <DatePicker :type="item.format" v-model="formItem.date" v-else></DatePicker>
+                            </FormItem>
+                        </Form>
                     </div>
                 </div>
             </div>
-            <div class="box-footer">
+            <div class="box-footer no-border">
                 <figure class="pull-right">
-                    <Button type="primary" @click="search">查询</Button>
-                    &nbsp;
+                    <Button type="primary" @click="search" class="margin-r-5">查询</Button>
                     <Button type="info" @click="resetSearch">清除</Button>
                 </figure>
             </div>
-        </div> -->
-        <div class="no-border" :class="{box:inBox}">
+        </div>
+        <div class="no-border padding-20" :class="{box:inBox}">
             <!-- /.box-header -->
             <div class="box-body">
                 <label v-if="addBtn">
                     <button class="btn btn-primary" @click="showModals('add')">添加</button>
                 </label>
                 <div class="row">
-
                     <div class="col-sm-12">
                         <Table :loading="loading" border :columns="column" :data="data" class="table table-bordered table-striped dataTable">
                         </Table>
@@ -200,7 +186,7 @@ export default {
             const operation = {
                 title: '操作',
                 key: 'action',
-                width: 150,
+                width: 250,
                 align: 'center',
                 render: (h, params) => {
                     let btns = [];
@@ -240,7 +226,8 @@ export default {
                         }
                     }, '删除'));
                     if(this.$scopedSlots&&this.$scopedSlots.btns){
-                        btns=btns.concat(this.$scopedSlots.btns(params).children)
+                      console.log(this.$scopedSlots.btns(params));
+                        btns=btns.concat(this.$scopedSlots.btns(params)[0].children)
                     }
                     return h('div', btns);
                 }
@@ -306,9 +293,12 @@ export default {
             }
             item.render=(createElement,params)=>{
               const customItems = slots.customItems(params);
-              const element = customItems.find(node=>{
+              const element = customItems[0].children.find(node=>{
+                console.log(node);
                 return  node.key===item.key;
               });
+              console.log('element');
+              console.log(element);
               return element.children||createElement('div',element.data);
             };
           }catch (e){
@@ -368,6 +358,12 @@ export default {
             if (typeof extendQuery !== "undefined") {
                 dataPost = Object.assign({}, dataPost, extendQuery);
             }
+            Object.keys(dataPost).forEach(key=>{
+                if(dataPost[key]===null||dataPost[key]===""){
+                    delete dataPost[key];
+                }
+            });
+            console.log(dataPost);
             this.loading = true;
             this.$http(queryUrl, dataPost).then((resp) => {
                 this.loading = false;

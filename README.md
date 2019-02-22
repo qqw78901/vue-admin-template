@@ -92,6 +92,12 @@
 ## 只跑该前端项目
 
 
+## nodejs 版本
+
+> Vue CLI 需要 Node.js 8.9 或更高版本 (推荐 8.11.0+)。你可以使用 nvm 或 nvm-windows 在同一台电脑中管理多个 Node 版本。
+
+使用 8.11.0
+
 ### demo的host
 221.228.81.29 gviewportal.game.yy.com
 
